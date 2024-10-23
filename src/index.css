@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer base {
+	:root {
+		--color-blue: 243, 58%, 21%;
+		--color-green: 168, 53%, 52%;
+		--color-light-green: 168, 53%, 52%, 0.16;
+		--color-white: 0, 0%, 100%;
+		--btn-shadow: hsl(0, 86%, 5%, 0.12);
+		--nav-shadow: hsl(0, 2%, 25%, 0.12);
+	}
+
+	@font-face {
+		font-family: 'Gilmer Medium';
+		src: url('./assets/fonts/gilmer-medium.woff2') format('woff2');
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'Gilmer Regular';
+		src: url('./assets/fonts/gilmer-regular.woff2') format('woff2');
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'Gilmer Light';
+		src: url('./assets/fonts/gilmer-light.woff2') format('woff2');
+		font-style: normal;
+	}
+
+	/* ------------------*/
+	/* General CSS Reset */
+	/*-------------------*/
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+
+	}
+
+
+	/* -------------------------- */
+	/* Making basic style resets */
+	/* ------------------------- */
+	html {
+		font-size: 62.5%;
+		scroll-behavior: smooth;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+
+	input:focus-visible {
+		outline: 2px solid transparent;
+		outline-offset: 2px;
+	}
+
+	img {
+		width: 100%;
+		max-inline-size: 100%;
+		max-width: unset;
+	}
+
+	button {
+		outline: transparent;
+	}
+
+	body {
+		font-size: 1.6rem;
+		font-weight: 400;
+		font-family: 'Gilmer Regular', sans-serif;
+		color: hsl(var(--color-blue));
+	}
+
+	body {
+		--sb-size: 10px;
+		scrollbar-color: hsl(var(--color-blue, 0.9)) hsl(0, 0%, 76%);
+	}
+
+	body::-webkit-scrollbar {
+		width: var(--sb-size)
+	}
+
+	body::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	body::-webkit-scrollbar-thumb {
+		background: hsl(var(--color-blue), 0.9);
+		border-radius: 10px;
+	}
+}
+
+
+@layer components {
+
+	.pulse::before,
+	.pulse::after {
+		content: "";
+		position: absolute;
+		scale: 0.4;
+		inset: 0;
+		opacity: 0.8;
+		background-color: hsl(var(--color-blue));
+		border-radius: 50%;
+	}
+
+	.pulse::before {
+		animation: pulse 4s ease-out infinite, colorAnimate 20s linear infinite alternate;
+	}
+
+	.pulse::after {
+		animation: pulse 4s 2s ease-out infinite, colorAnimate 20s linear infinite alternate;
+	}
+
+	@keyframes pulse {
+
+		80%,
+		100% {
+			opacity: 0;
+			transform: scale(2);
+		}
+	}
+
+	@keyframes colorAnimate {
+
+		0%,
+		80% {
+			background-color: hsl(var(--color-blue));
+		}
+
+		20%,
+		60% {
+			background-color: hsl(var(--color-green));
+		}
+
+		40%,
+		100% {
+			background-color: hsl(var(--color-blue));
+		}
+	}
+}
